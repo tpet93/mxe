@@ -3,6 +3,8 @@
 /gits/
 /log*/
 /pkg
+/CMakeFiles/
+/CMakeCache.txt
 /wip/
 /tmp-*
 /.ccache
