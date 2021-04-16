@@ -49,6 +49,10 @@ define $(PKG)_BUILD
         -DBUILD_examples=OFF \
         -DBUILD_global_tests=OFF \
         -DBUILD_tools=ON \
+        -DBUILD_visualization=ON \
+        -DPCL_VTK_COMPONENTS=ON \
+        -DWITH_VTK=ON \
+        -DWITH_QT=OFF\
         -DWITH_CUDA=OFF \
         -DWITH_PCAP=OFF \
         -DHAVE_MM_MALLOC_EXITCODE=0 \
