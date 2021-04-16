@@ -1,15 +1,27 @@
 # This file is part of MXE. See LICENSE.md for licensing information.
 
+# PKG             := pcl
+# $(PKG)_WEBSITE  := http://www.pointclouds.org/
+# $(PKG)_DESCR    := PCL (Point Cloud Library)
+# $(PKG)_IGNORE   :=
+# $(PKG)_VERSION  := 1.9.1
+# $(PKG)_CHECKSUM := 0add34d53cd27f8c468a59b8e931a636ad3174b60581c0387abb98a9fc9cddb6
+# $(PKG)_SUBDIR   := $(PKG)-$(PKG)-$($(PKG)_VERSION)
+# $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.gz
+# $(PKG)_URL      := https://github.com/PointCloudLibrary/pcl/archive/$($(PKG)_FILE)
+# $(PKG)_DEPS     := cc boost eigen flann vtk
+
 PKG             := pcl
 $(PKG)_WEBSITE  := http://www.pointclouds.org/
 $(PKG)_DESCR    := PCL (Point Cloud Library)
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 1.9.1
-$(PKG)_CHECKSUM := 0add34d53cd27f8c468a59b8e931a636ad3174b60581c0387abb98a9fc9cddb6
-$(PKG)_SUBDIR   := $(PKG)-$(PKG)-$($(PKG)_VERSION)
-$(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.gz
-$(PKG)_URL      := https://github.com/PointCloudLibrary/pcl/archive/$($(PKG)_FILE)
+$(PKG)_VERSION  := 1.11.1
+$(PKG)_CHECKSUM := 19d1a0bee2bc153de47c05da54fc6feb23393f306ab2dea2e25419654000336e
+$(PKG)_SUBDIR   := $(PKG)
+$(PKG)_FILE     := source.tar.gz
+$(PKG)_URL      := https://github.com/PointCloudLibrary/pcl/releases/download/$(PKG)-$($(PKG)_VERSION)/$($(PKG)_FILE)
 $(PKG)_DEPS     := cc boost eigen flann vtk
+
 
 define $(PKG)_UPDATE
     $(WGET) -q -O- "https://github.com/PointCloudLibrary/pcl/releases" | \
@@ -33,10 +45,10 @@ define $(PKG)_BUILD
         -DBoost_THREADAPI=win32 \
         -DPCL_SHARED_LIBS=$(CMAKE_SHARED_BOOL) \
         -DBUILD_TESTS=OFF \
-        -DBUILD_apps=OFF \
+        -DBUILD_apps=ON \
         -DBUILD_examples=OFF \
         -DBUILD_global_tests=OFF \
-        -DBUILD_tools=OFF \
+        -DBUILD_tools=ON \
         -DWITH_CUDA=OFF \
         -DWITH_PCAP=OFF \
         -DHAVE_MM_MALLOC_EXITCODE=0 \
